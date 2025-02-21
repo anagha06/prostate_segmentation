@@ -1,22 +1,56 @@
-# prostate_segmentation
-Prostate Cancer segmentation and explainability decision support system
+# Prostate_Segmentation  
 
-Segmentation using efficientnet.
-Use a expert system to provide decision support based on segmented result.
+**Prostate cancer segmentation and explainability decision support system using EfficientNet.**  
 
+## Overview  
 
-Introduction 
+Prostate cancer diagnosis often involves borderline classification decisions, where subtle differences in Gleason scores can significantly impact treatment. **GleasonNet** is a **four-pipeline decision support system** that enhances **prostate cancer segmentation and explainability**. Using **EfficientNet** for segmentation and an expert-driven decision support system, this approach provides clinicians with **confidence metrics and predictive insights**, addressing key gaps in automated diagnosis.  
 
-Automated prostate cancer stratification has seen high-performing yet impractical solutions. While automating this diagnosis sector can help settle borderline classification decisions (e.g. a 3+4 tumor and its 4+3 counterpart contain minute, but critical differences), state-of-the-art solutions fail to address key aspects. Merely regurgitating a single Gleason leaves no room for doctors to assess confidence metrics and predict treatment paths. To combat these shortcomings, a four-pipeline deliverable GleasonNet was to achieve a 75% baseline Jaccard Distance with recall emphasis.
+## Features  
 
-Protocol 
+- **EfficientNet-Based Semantic Segmentation**: Classifies **six distinct pixel types** for precise tumor detection.  
+- **Expert-Driven Decision Support**: Uses a **novel algorithm** to enhance clinical decision-making.  
+- **High-Accuracy Quantification**: Converts segmentation results into actionable **ISUP/Gleason scores**.  
+- **Google Cloud TPU Optimization**: Enables efficient processing of large pathology datasets.  
+- **Explainability & Confidence Metrics**: Helps oncologists assess percentage involvement of tumor regions.  
 
-Four pipelines were created using pathologic data from Radboud and Karolinska Institutes. (1) A Preprocessing segment downpooled images to an accessible size and filtered an ISUP/Gleason CSV to Radboud. (2) The Semantic Segmentation Pipeline was trained to categorize 6 distinct pixel types. (3) The Prediction Pipeline was trained using Google Cloud TPU as a quantification mechanism from marked masks to corresponding ISUP. (4) A novel decision support algorithm was devised with a GU oncologist.
+## Methodology  
 
-Discussion 
+### **1. Dataset & Preprocessing**  
+- Utilizes **pathologic data** from **Radboud & Karolinska Institutes**.  
+- Downscales images for accessibility.  
+- Filters dataset to **Radboud cases** for segmentation.  
 
-After relevant testing, the Semantic Segmentation Pipeline achieved an average IOU/Jaccard Distance (overlap between target/predicted mask) of 85%. Pipelines 3-4 (quantification of usable metrics) achieved validation accuracy and recall of both 79%. Using the oncologist-defined algorithm, “percentage involvement” was explainably calculated. A TPU helped overcome  computational complexity caused by dataset size. 
+### **2. Semantic Segmentation Pipeline**  
+- **Trained EfficientNet** to segment six different prostate cancer tissue types.  
+- Achieved **85% Jaccard Distance (IoU)** for target/predicted masks.  
 
-Not only does GleasonNet achieve competitive results; it enables vital aspects of explainability, confidence, and decision support. Large-scope implementation may serve to reduce missed early-onset precancerous lesions and resolve difficulties of borderline diagnoses.
+### **3. Prediction Pipeline**  
+- Uses segmentation masks to **quantify tumor characteristics**.  
+- Trained on Google Cloud TPU for **efficient processing**.  
+- Achieved **79% validation accuracy & recall** for ISUP classification.  
 
+### **4. Decision Support System**  
+- Developed with **a GU oncologist** to provide explainable metrics.  
+- Computes **“percentage involvement”** for enhanced diagnostic confidence.  
+- Helps distinguish **borderline cases** (e.g., Gleason **3+4 vs. 4+3**).  
 
+## Results  
+
+- **Semantic Segmentation Performance**: 85% **Jaccard Distance (IoU)**.  
+- **Prediction Pipeline Accuracy**: 79% **validation accuracy & recall**.  
+- **Explainability & Confidence Metrics**: Enables oncologists to **assess risk & treatment pathways**.  
+
+## Installation  
+
+### **Requirements**  
+- Python 3.x  
+- TensorFlow  
+- EfficientNet  
+- Google Cloud TPU (for training)  
+
+### **Setup**  
+```bash
+git clone https://github.com/yourusername/prostate_segmentation.git
+cd prostate_segmentation
+pip install -r requirements.txt
